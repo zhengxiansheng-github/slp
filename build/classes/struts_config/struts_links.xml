@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+	<struts>
+		<package name="links" extends="struts-default" strict-method-invocation="false">
+			<action name="linksAction_*" class="linksAction" method="{1}">
+				<result name="list">/WEB-INF/jsp/admin/links/listlinks.jsp</result>
+				<result name="search">/WEB-INF/jsp/admin/links/searchlinks.jsp</result>
+				<result name="add" type="redirect">linksAction_list</result>
+				<result name="toUpdate">/WEB-INF/jsp/admin/links/updatelinks.jsp</result>
+				<result name="update" type="redirect">linksAction_list</result>
+				<result name="delete" type="redirect">linksAction_list</result>
+			</action>
+			<action name="addlinks">
+				<result>/WEB-INF/jsp/admin/links/addlinks.jsp</result>
+			</action>
+		</package>
+	</struts>

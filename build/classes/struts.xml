@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+	<struts>
+
+		<include file="struts_config/struts_admin.xml"></include>
+		<include file="struts_config/struts_siteinfo.xml"></include>
+		<include file="struts_config/struts_index.xml"></include>
+		<include file="struts_config/struts_project.xml"></include>
+		<include file="struts_config/struts_projectcategory.xml"></include>
+		<include file="struts_config/struts_services.xml"></include>
+		<include file="struts_config/struts_servicesCategory.xml"></include>
+		<include file="struts_config/struts_team.xml"></include>
+		<include file="struts_config/struts_news.xml"></include>
+		<include file="struts_config/struts_newsCategory.xml"></include>
+		<include file="struts_config/struts_banner.xml"></include>
+		<include file="struts_config/struts_links.xml"></include>
+		
+	</struts>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+	<struts>
+		<package name="newsCategory" extends="struts-default" strict-method-invocation="false">
+			<!-- 新闻资讯分类 -->
+			<action name="newsCategoryAction_*" class="newsCategoryAction" method="{1}">
+				<result name="list">/WEB-INF/jsp/admin/newsCategory/listnewsCategory.jsp</result>
+				<result name="add" type="redirect">newsCategoryAction_list</result>
+				<result name="toUpdate">/WEB-INF/jsp/admin/newsCategory/updatenewsCategory.jsp</result>
+				<result name="update" type="redirect">newsCategoryAction_list</result>
+				<result name="delete" type="redirect">newsCategoryAction_list</result>
+			</action>
+			<action name="addnewsCategory">
+				<result>/WEB-INF/jsp/admin/newsCategory/addnewsCategory.jsp</result>
+			</action>
+		</package>
+	</struts>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+	<struts>
+		<package name="team" extends="struts-default" strict-method-invocation="false">
+			<!-- 头部动态显示   拦截器 -->
+			<interceptors>
+				<interceptor name="headInterceptor" class="headInterceptor"></interceptor>
+				<interceptor name="footerInterceptor" class="footerInterceptor"></interceptor>
+				<interceptor-stack name="headStack">
+					<interceptor-ref name="headInterceptor"></interceptor-ref>
+					<interceptor-ref name="footerInterceptor"></interceptor-ref>
+					<interceptor-ref name="defaultStack"></interceptor-ref>
+				</interceptor-stack>
+			</interceptors>
+			<!-- 团队 -->
+			<action name="teamAction_*" class="teamAction" method="{1}">
+				<!-- 引用拦截器 -->
+				<interceptor-ref name="headStack"></interceptor-ref>
+				<!-- 前台跳转到更多团队页面 -->
+				<result name="team">/WEB-INF/jsp/qt/team.jsp</result>
+				<!-- 前台跳转到团队详情页面 -->
+				<result name="teamMember">/WEB-INF/jsp/qt/team_member.jsp</result>
+				<!-- 后台显示团队列表页面 -->
+				<result name="list">/WEB-INF/jsp/admin/team/listteam.jsp</result>
+				<!-- 后台模糊查询 -->
+				<result name="search">/WEB-INF/jsp/admin/team/searchteam.jsp</result>
+				<!-- 后台添加 -->
+				<result name="add" type="redirect">teamAction_list</result>
+				<!-- 后台跳转到修改界面 -->
+				<result name="toUpdate">/WEB-INF/jsp/admin/team/updateteam.jsp</result>
+				<!-- 后台修改 -->
+				<result name="update" type="redirect">teamAction_list</result>
+				<!-- 后台删除 -->
+				<result name="delete" type="redirect">teamAction_list</result>
+			</action>
+			<!-- 后台跳转到添加界面 -->
+			<action name="addteam">
+				<result>/WEB-INF/jsp/admin/team/addteam.jsp</result>
+			</action>
+		</package>
+	</struts>

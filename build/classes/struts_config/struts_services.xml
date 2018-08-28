@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+	<struts>
+		<package name="services" extends="struts-default" strict-method-invocation="false">
+			<!-- 头部动态显示   拦截器 -->
+			<interceptors>
+				<interceptor name="headInterceptor" class="headInterceptor"></interceptor>
+				<interceptor name="footerInterceptor" class="footerInterceptor"></interceptor>
+				<interceptor-stack name="headStack">
+					<interceptor-ref name="headInterceptor"></interceptor-ref>
+					<interceptor-ref name="footerInterceptor"></interceptor-ref>
+					<interceptor-ref name="defaultStack"></interceptor-ref>
+				</interceptor-stack>
+			</interceptors>
+			<!-- 服务 -->
+			<action name="servicesAction_*" class="servicesAction" method="{1}">
+				<!-- 引用拦截器 -->
+				<interceptor-ref name="headStack"></interceptor-ref>
+				<!-- 跳转到前台服务页面 -->
+				<result name="services">/WEB-INF/jsp/qt/service.jsp</result>
+				<!-- 后台服务列表显示 -->
+				<result name="list">/WEB-INF/jsp/admin/service/listservice.jsp</result>
+				<!-- 后台模糊查询 -->
+				<result name="search">/WEB-INF/jsp/admin/service/searchservice.jsp</result>
+				<!-- 后台添加 -->
+				<result name="add" type="redirect">servicesAction_list</result>
+				<!-- 跳转到修改页面 -->
+				<result name="toUpdate">/WEB-INF/jsp/admin/service/updateservice.jsp</result>
+				<!-- 修改 -->
+				<result name="update" type="redirect">servicesAction_list</result>
+				<!--  -->
+				<result name="delete" type="redirect">servicesAction_list</result>
+			</action>
+			<!-- 后台跳转到添加页面 -->
+			<action name="addservices">
+				<result>/WEB-INF/jsp/admin/service/addservice.jsp</result>
+			</action>
+		</package>
+	</struts>

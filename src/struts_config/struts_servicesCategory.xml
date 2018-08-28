@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+	<struts>
+		<package name="servicesCategory" extends="struts-default" strict-method-invocation="false">
+			<!-- 服务 -->
+			<action name="servicesCategoryAction_*" class="servicesCategoryAction" method="{1}">
+				<!-- 后台服务列表显示 -->
+				<result name="list">/WEB-INF/jsp/admin/serviceCategory/listserviceCategory.jsp</result>
+				<!-- 后台模糊查询 -->
+				<result name="search">/WEB-INF/jsp/admin/serviceCategory/searchserviceCategory.jsp</result>
+			</action>
+		</package>
+	</struts>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+	<struts>
+		<package name="news" extends="struts-default" strict-method-invocation="false">
+			<!-- 头部动态显示   拦截器 -->
+			<interceptors>
+				<interceptor name="headInterceptor" class="headInterceptor"></interceptor>
+				<interceptor name="footerInterceptor" class="footerInterceptor"></interceptor>
+				<interceptor-stack name="headStack">
+					<interceptor-ref name="headInterceptor"></interceptor-ref>
+					<interceptor-ref name="footerInterceptor"></interceptor-ref>
+					<interceptor-ref name="defaultStack"></interceptor-ref>
+				</interceptor-stack>
+			</interceptors>
+			<!-- 新闻 -->
+			<action name="newsAction_*" class="newsAction" method="{1}">
+				<!-- 引用拦截器 -->
+				<interceptor-ref name="headStack"></interceptor-ref>
+				<!-- 前台跳转到更多新闻资讯页面 -->
+				<result name="news">/WEB-INF/jsp/qt/news.jsp</result>
+				<!-- 前台跳转到新闻资讯详情页面 -->
+				<result name="newsDetails">/WEB-INF/jsp/qt/news_details.jsp</result>
+				<!-- 后台新闻资讯列表显示 -->
+				<result name="list">/WEB-INF/jsp/admin/news/listnews.jsp</result>
+				<!-- 后台模糊查询 -->
+				<result name="search">/WEB-INF/jsp/admin/news/searchnews.jsp</result>
+				<!-- 后台查询分类信息并 跳转到添加页面 -->
+				<result name="toAdd">/WEB-INF/jsp/admin/news/addnews.jsp</result>
+				<!-- 后台添加 -->
+				<result name="add" type="redirect">newsAction_list</result>
+				<!-- 后台跳转到修改页面 -->
+				<result name="toUpdate">/WEB-INF/jsp/admin/news/updatenews.jsp</result>
+				<!-- 后台修改 -->
+				<result name="update" type="redirect">newsAction_list</result>
+				<!-- 后台删除 -->
+				<result name="delete" type="redirect">newsAction_list</result>
+			</action>
+		</package>
+	</struts>

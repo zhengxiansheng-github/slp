@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+	<struts>
+		<package name="siteInfo" extends="struts-default" strict-method-invocation="false">
+			<!-- 头部动态显示   拦截器 -->
+			<interceptors>
+				<interceptor name="headInterceptor" class="headInterceptor"></interceptor>
+				<interceptor name="footerInterceptor" class="footerInterceptor"></interceptor>
+				<interceptor-stack name="headStack">
+					<interceptor-ref name="headInterceptor"></interceptor-ref>
+					<interceptor-ref name="footerInterceptor"></interceptor-ref>
+					<interceptor-ref name="defaultStack"></interceptor-ref>
+				</interceptor-stack>
+			</interceptors>
+			<!-- 案例 -->
+			<action name="siteInfoAction_*" class="siteInfoAction" method="{1}">
+				<!-- 引用拦截器 -->
+				<interceptor-ref name="headStack"></interceptor-ref>
+				<!-- 后台 -->
+				<result name="list">/WEB-INF/jsp/admin/siteInfo/list.jsp</result>
+				<result name="search">/WEB-INF/jsp/admin/siteInfo/search.jsp</result>
+				<result name="add" type="redirect">siteInfoAction_list</result>
+				<result name="delete" type="redirect">siteInfoAction_list</result>
+				<result name="toUpdate">/WEB-INF/jsp/admin/siteInfo/update.jsp</result>
+				<result name="update" type="redirect">siteInfoAction_list</result>
+				<!-- 前台 -->
+				<result name="moreSiteInfo">/WEB-INF/jsp/qt/more_siteinfo.jsp</result>
+			</action>
+			<!-- 后台添加 -->
+			<action name="addsiteInfo">
+				<result>/WEB-INF/jsp/admin/siteInfo/add.jsp</result>
+			</action>
+		</package>
+	</struts>

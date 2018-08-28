@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+	<struts>
+		<package name="admin" extends="struts-default" strict-method-invocation="false">
+			<!-- 跳转到后台登录界面 -->
+			<action name="adminLogin">
+				<result>/WEB-INF/jsp/admin/login.jsp</result>
+			</action>
+			<!-- 后台登录 -->
+			<action name="adminAction_*" class="adminAction" method="{1}">
+				<result name="main" type="redirect">adminAction_main</result>
+				<result name="login">/WEB-INF/jsp/admin/login.jsp</result>
+				<result name="toMain">/WEB-INF/jsp/admin/main.jsp</result>
+				
+				<!-- 后台 -->
+				<result name="list">/WEB-INF/jsp/admin/admin/listadmin.jsp</result>
+				<result name="search">/WEB-INF/jsp/admin/admin/searchadmin.jsp</result>
+				<result name="add" type="redirect">adminAction_list</result>
+				<result name="delete" type="redirect">adminAction_list</result>
+				<!-- 跳转到后台修改界面 -->
+				<result name="toUpdate">/WEB-INF/jsp/admin/admin/updateadmin.jsp</result>
+				<!-- 后台修改用户 -->
+				<result name="update" type="redirect">adminLogin</result>
+			</action>
+			<!-- 跳转到后台添加 -->
+			<action name="toAddadmin">
+				<result>/WEB-INF/jsp/admin/admin/addadmin.jsp</result>
+			</action>
+		</package>
+	</struts>

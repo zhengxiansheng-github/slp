@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+	<struts>
+		<package name="index" extends="struts-default" strict-method-invocation="false">
+			<!-- 头部动态显示   拦截器 -->
+			<interceptors>
+				<interceptor name="headInterceptor" class="headInterceptor"></interceptor>
+				<interceptor name="footerInterceptor" class="footerInterceptor"></interceptor>
+				<interceptor-stack name="headStack">
+					<interceptor-ref name="headInterceptor"></interceptor-ref>
+					<interceptor-ref name="footerInterceptor"></interceptor-ref>
+					<interceptor-ref name="defaultStack"></interceptor-ref>
+				</interceptor-stack>
+			</interceptors>
+			<!-- 站点 -->
+			<action name="indexAction_*" class="indexAction" method="{1}">
+				<!-- 引用拦截器 -->
+				<interceptor-ref name="headStack"></interceptor-ref>
+				<result name="index">/WEB-INF/jsp/qt/index.jsp</result>
+			</action>
+			<!-- 简介 -->
+			<action name="intro">
+				<interceptor-ref name="headStack"></interceptor-ref>
+				<result>/WEB-INF/jsp/qt/intro.jsp</result>
+			</action>
+			<!-- 联系 -->
+			<action name="contact">
+				<interceptor-ref name="headStack"></interceptor-ref>
+				<result>/WEB-INF/jsp/qt/contact.jsp</result>
+			</action>
+		</package>
+	</struts>

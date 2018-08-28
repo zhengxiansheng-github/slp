@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+	<struts>
+		<package name="banner" extends="struts-default" strict-method-invocation="false">
+			<action name="bannerAction_*" class="bannerAction" method="{1}">
+				<result name="list">/WEB-INF/jsp/admin/banner/listbanner.jsp</result>
+				<result name="search">/WEB-INF/jsp/admin/banner/searchbanner.jsp</result>
+				<result name="add" type="redirect">bannerAction_list</result>
+				<result name="toUpdate">/WEB-INF/jsp/admin/banner/updatebanner.jsp</result>
+				<result name="update" type="redirect">bannerAction_list</result>
+				<result name="delete" type="redirect">bannerAction_list</result>
+			</action>
+			<action name="addbanner">
+				<result>/WEB-INF/jsp/admin/banner/addbanner.jsp</result>
+			</action>
+		</package>
+	</struts>
